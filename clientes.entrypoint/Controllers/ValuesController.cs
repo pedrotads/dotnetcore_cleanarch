@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using clientes.domain;
 using clientes.entrypoint.view;
 using clientes.usecases;
 using Mapster;
@@ -11,12 +12,16 @@ namespace clientes.entrypoint.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class ClientesController : ControllerBase
     {
         private IListaClientes _listaClientes;
-        public ValuesController(IListaClientes listaClientes)
+        private INovoCliente _novoCliente;
+        public ClientesController(IListaClientes listaClientes,
+        INovoCliente novoCliente)
         {
             _listaClientes = listaClientes;
+            _novoCliente = novoCliente;
+            
         }
         
         // GET api/values
@@ -37,8 +42,10 @@ namespace clientes.entrypoint.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<ClienteViewModel> Post([FromBody] ClienteViewModel value)
         {
+            var result = _novoCliente.Novo(value.Adapt<Cliente>());
+            return result.Adapt<ClienteViewModel>();
         }
 
         // PUT api/values/5

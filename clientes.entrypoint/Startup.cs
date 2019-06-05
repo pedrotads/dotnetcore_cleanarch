@@ -12,7 +12,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using clientes.gateways.db_dev;
 
 namespace clientes.entrypoint
 {
@@ -29,8 +28,10 @@ namespace clientes.entrypoint
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddScoped<IListaClientes, ListaClientes>();
-            services.AddScoped<IListaClientesRepository, ListaClientesRepository>();
+            services.AddSingleton<IListaClientes, ListaClientes>();
+            services.AddSingleton<IListaClientesRepository, ListaClientesRepository>();
+            services.AddSingleton<INovoCliente, NovoCliente>();
+            services.AddSingleton<INovoClienteRepository, NovoClienteRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,7 +40,6 @@ namespace clientes.entrypoint
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                new InMemoryDb();
             }
             else
             {

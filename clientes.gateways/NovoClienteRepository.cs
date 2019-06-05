@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using clientes.domain;
+using clientes.gateways.model;
 using clientes.usecases;
 using Mapster;
 
 namespace clientes.gateways
 {
-    public class ListaClientesRepository : BaseRepository, IListaClientesRepository
+    public class NovoClienteRepository : BaseRepository, INovoClienteRepository
     {
-        public IList<Cliente> ListarClientes()
+        public Cliente Novo(Cliente cliente)
         {
-            List<Cliente> result = null;
+            Cliente result = cliente = null;
             return result;
         }
     }

@@ -9,7 +9,7 @@ namespace clientes.gateways.model
         public string Nome { get; set; }
         public DateTime Nascimento { get; set; }
         public string Telefone { get; set; }
-        public IList<EnderecoModel> Enderecos { get; set; }
+        //public IList<EnderecoModel> Enderecos { get; set; }
     }
 
 }
