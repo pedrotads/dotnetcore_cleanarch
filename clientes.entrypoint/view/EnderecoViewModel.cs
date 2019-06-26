@@ -2,6 +2,7 @@ namespace clientes.entrypoint.view
 {
     public class EnderecoViewModel
     {
+      public string Id { get; set; }
       public string Logradouro { get; set; }
       public string Numero { get; set; }
       public string Cidade { get; set; }
