@@ -13,8 +13,7 @@ namespace clientes.usecases
         
         public Cliente Novo(Cliente cliente)
         {
-            _novoClienteRepository.Novo(cliente);
-            return cliente;
+            return _novoClienteRepository.Novo(cliente);
         }
     }
 }

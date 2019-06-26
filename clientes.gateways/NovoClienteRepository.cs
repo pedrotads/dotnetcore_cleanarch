@@ -12,13 +12,13 @@ namespace clientes.gateways
     {        
         public Cliente Novo(Cliente cliente)
         {
-            ClienteModel result = cliente.Adapt<ClienteModel>();
+            var newClient = cliente.Adapt<ClienteModel>();
             using (var db = new ClientesDbContext())
             {                
-                db.Clientes.Add(result);
+                db.Clientes.Add(newClient);
                 var count = db.SaveChanges();
             }
-            return result.Adapt<Cliente>();
+            return newClient.Adapt<Cliente>();
         }
     }
 }
